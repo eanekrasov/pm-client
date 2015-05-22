@@ -1,0 +1,897 @@
+@font-face { 
+  font-family: open_sans_semibold; 
+  src: url('../fonts/open_sans_semibold.ttf');
+}
+
+@font-face { 
+  font-family: open_sans; 
+  src: url('../fonts/open_sans.ttf');
+}
+
+@font-face { 
+  font-family: open_sans_bold; 
+  src: url('../fonts/open_sans_bold.ttf');
+}
+
+.dont-copy-this-div {
+  margin: 100px auto;
+  width: 436px;
+}
+
+.nicescroll-rails {
+  overflow: hidden;
+}
+
+.nicescroll-cursors {
+  cursor: pointer;
+}
+
+.messenger-box {
+  display: none;
+  height: 372px;
+  width: 436px;
+  color: #333333;
+  font-family: open_sans;
+  font-size: 11px;
+  @include border-radius(4px 4px 0 0);
+
+  a,
+  span,
+  div {
+    color: #333;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .thumb {
+    width: 8px !important;
+    cursor: pointer;
+  }
+
+  .scroll-bar {
+    width: 8px;
+    background: #f3f3f3;
+  }
+
+  .header-top-line {
+    position: relative;
+    border-top: 1px solid #cccccc;
+    height: 22px;
+    background: #2980b9;
+    text-align: right;
+    line-height: 19px;
+    @include border-radius(4px 4px 0 0);
+
+    .add-person,
+    .close {
+      margin-left: 8px;
+      @include inline-block();
+    }
+
+    .add-person {
+      width: 17px;
+      height: 16px;
+      @include sprites-sprite(mess_add-person);
+    }
+
+    .close {
+      margin-right: 11px;
+      width: 11px;
+      height: 10px;
+      @include sprites-sprite(mess_close);
+    }
+
+    .add-person-box {
+      display: none;
+      z-index: 1;
+      position: absolute;
+      right: 2px;
+      top: 28px;
+      border: 1px solid #c6c6c6;
+      padding: 0 10px;
+      width: 240px;
+      background: #f9f9f9;
+      @include border-radius(3px);
+      @include box-sizing(border-box);
+
+      &.active {
+        display: block;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        right: 26px;
+        display: block;
+        margin: auto;
+        width: 8px;
+        height: 5px;
+        @include sprites-sprite(mess_triangle-textarea);
+      }
+
+      .field-wrap {
+        margin: 10px 0;
+
+        input[type="text"] {
+          border: 1px solid #dedddd;
+          padding: 0 4px;
+          width: 100%;
+          height: 23px;
+          line-height: 23px;
+          font-size: 10px;
+          font-family: open_sans_semibold; 
+          @include border-radius(2px);
+          @include box-sizing(border-box);
+        }
+      }
+
+      .scroll-box {
+        height: 90px;
+      }
+
+      .scroll-bar.vertical {
+        background: #f3f3f3;
+      }
+
+      .thumb {
+        background: #cccccc;
+      }
+
+      .field {
+        margin-bottom: 5px;
+        text-align: left;
+
+        &:last-child {
+          margin-bottom: 12px;
+        }
+      }
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      input[type="checkbox"] + label {
+        font-family: open_sans_semibold; 
+        font-size: 11px;
+        cursor: pointer;
+      }
+
+      input[type="checkbox"] + label .box {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin: -2px 7px 0 0;
+        vertical-align: middle;
+        background: url('../images/mess_sprite-checkbox.png') left top no-repeat;
+        cursor: pointer;
+      }
+
+      input[type="checkbox"]:checked + label .box {
+        background: url('../images/mess_sprite-checkbox.png') -14px top no-repeat;
+      }
+
+      .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 170px;
+        @include inline-block(bottom);
+      }
+
+      .icon-status {
+        position: relative;
+        top: -1px;
+        margin-right: 3px;
+        width: 10px;
+        height: 10px;
+        @include inline-block();
+      }
+
+      .icon-status_online {
+        background: url('../images/mess_status_online.png');
+      }
+
+      .icon-status_offline {
+        background: url('../images/mess_status_offline.png');
+      }
+
+      .icon-status_away {
+        background: url('../images/mess_status_away.png');
+      }
+
+      .icon-status_do_not_disturb {
+        background: url('../images/mess_status_do_not_disturb.png');
+      }
+
+      .submit-wrap {
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      input[type="submit"] {
+        margin-bottom: 20px;
+        border: none;
+        width: 118px;
+        height: 22px;
+        line-height: 20px;
+        color: #fff;
+        background: #27ae60;
+        text-align: center;
+        font-size: 10px;
+        font-family: open_sans_semibold;
+        cursor: pointer;
+        @include border-radius(2px);
+      }
+    }
+  }
+
+  .wrap-content {
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    height: 100%;
+    font-size: 0;
+    background: #e8e8e8;
+  }
+
+  .list-contacts,
+  .dialog-wrap {
+    height: 100%;
+    background: #e8e8e8;
+    font-size: 11px;
+    @include box-sizing(border-box);
+  }
+
+  /* list-contacts left part */
+  .list-contacts {
+    border-right: 1px solid #cccccc;
+    width: 177px;
+    float: left;
+
+    .person {
+      padding: 10px 10px 0;
+
+      img {
+        float: left;
+      }
+
+      .wrap {
+        padding-left: 39px;
+      }
+
+      .name {
+        display: block;
+        margin-bottom: 3px;
+        font-size: 12px;
+        font-family: open_sans_bold;
+      }
+    }
+
+    .btn-search {
+      display: block;
+      margin: 20px auto 25px;
+      height: 28px;
+      line-height: 28px;
+      width: 92px;
+      color: #fff;
+      background: #2980b9;
+      text-align: center;
+      font-size: 10px;
+      font-family: open_sans_semibold;
+      @include border-radius(3px);
+      @include box-sizing(border-box);
+    }
+  }
+
+  .select-status-box {
+    .ddcommon .ddChild {
+      overflow: visible;
+    }
+
+    .dd {
+      width: 118px !important;
+    }
+
+    .ddcommon .ddTitle .ddTitleText img,
+    .ddcommon .ddChild li img {
+      vertical-align: inherit;
+    }
+
+    .dd .ddChild {
+      position: relative;
+      top: 20px !important;
+      @include border-radius(3px);
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 11px;
+        display: block;
+        width: 8px;
+        height: 6px;
+        @include sprites-sprite(mess_triangle-form-status);
+      }
+    }
+
+    .dd .ddTitle,
+    .dd .ddChild li {
+      border: none;
+    }
+
+    .dd .ddChild li.selected {
+      background: #ecebeb;
+    }
+
+    .dd .ddChild li {
+      height: 26px;
+      line-height: 26px;
+    }
+
+    .ddlabel,
+    .dd .ddChild li .ddlabel {
+      font-size: 11px;
+    }
+
+    .dd .ddTitle .ddTitleText {
+      padding: 1px 0;
+      background: #e8e8e8;
+    }
+  }
+
+  .search {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 100%;
+      background: #cccccc;
+    }
+
+    input {
+      border: none;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    input[type="text"] {
+      padding: 0 32px 0 30px;
+      height: 28px;
+      width: 100%;
+      line-height: 28px;
+      font-size: 11px;
+      color: #666666;
+      background: #e8e8e8;
+      @include box-sizing(border-box);
+
+      &:focus,
+      &:hover {
+        border-color: transparent;
+      }
+    }
+
+    input[type="reset"] {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      width: 19px;
+      height: 19px;
+      cursor: pointer;
+      @include sprites-sprite(mess_search-reset);
+
+      &:focus {
+        @include sprites-sprite(mess_search-reset_hover);
+      }
+    }
+
+    input[type="submit"] {
+      position: absolute;
+      top: 9px;
+      left: 10px;
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      @include sprites-sprite(mess_search-submit);
+    }
+  }
+
+  .list-friends {
+    position: relative;
+    margin-top: 2px;
+    padding: 0 10px;
+    height: 295px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 13px;
+      background: #e8e8e8;
+    }
+
+    .thumb {
+      background: #2980b9;
+    }
+
+    ul {
+      padding: 10px 0 0 0;
+    }
+
+    li {
+      margin-bottom: 2px;
+
+      &:hover,
+      &:active {
+        background: #cccccc;
+      }
+    }
+
+    .wrap-img {
+      position: relative;
+      margin-right: 5px;
+    }
+
+    .wrap-img,
+    .name {
+      @include inline-block();
+    }
+
+    .name {
+      white-space: nowrap;
+      width: 100px;
+      font-family: open_sans_semibold;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .icon-status {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 7px;
+      height: 7px;
+    }
+
+    .icon-status_online {
+      @include sprites-sprite(mess_icon-status_online);
+    }
+
+    .icon-status_offline {
+      @include sprites-sprite(mess_icon-status_offline);
+    }
+
+    .icon-status_away {
+      @include sprites-sprite(mess_icon-status_away);
+    }
+
+    .icon-status_do_not_disturb {
+      @include sprites-sprite(mess_icon-status_do_not_disturb);
+    }
+  }
+
+  .list-similar-contants {
+    display: none;
+
+    .info {
+      width: 100px;
+      @include inline-block();
+    }
+
+    .geo {
+      margin-top: 4px;
+      width: 100px;
+      font-size: 9px;
+      font-family: open_sans_semibold;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      @include inline-block();
+    }
+
+    .icon-add {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 12px;
+      height: 12px;
+      @include sprites-sprite(mess_icon-add);
+    }
+  }
+
+  /* dialog right part */
+  .dialog-wrap {
+    padding: 10px 0;
+    width: 257px;
+    float: right;
+  }
+
+  .active-person {
+    padding: 0 10px;
+
+    &:after {
+      content: "";
+      display: block;
+      clear: both;
+      margin-top: 12px;
+      margin-left: -10px;
+      padding-right: 20px;
+      height: 1px;
+      width: 100%;
+      background: #cccccc;
+    }
+
+    .link-img {
+      float: left;
+      margin-right: 10px;
+    }
+
+    .person {
+      a,
+      span {
+        display: block;
+      }
+    }
+
+    .name {
+      font-size: 14px;
+    }
+
+    .name,
+    .status {
+      margin-bottom: 5px;
+    }
+
+    .status {
+      &:before {
+        content: "";
+        padding-right: 5px;
+        width: 10px;
+        height: 10px;
+        @include inline-block(bottom);
+      }
+    }
+
+    .status_online {
+      &:before {
+        background: url('../images/mess_status_online.png') no-repeat;
+      }
+    }
+
+    .status_offline,
+    .status_invisible {
+      &:before {
+        background: url('../images/mess_status_offline.png') no-repeat;
+      }
+    }
+
+    .status_away {
+      &:before {
+        background: url('../images/mess_status_away.png') no-repeat;
+      }
+    }
+
+    .status_do_not_disturb {
+      &:before {
+        background: url('../images/mess_status_do_not_disturb.png') no-repeat;
+      }
+    }
+  }
+
+  .dialog-wrap {
+    .content {
+      position: relative;
+      height: 303px;
+      
+      .thumb {
+        background: #cccccc;
+      }
+    }
+
+    .dialog {
+      padding: 0 10px;
+      height: 229px;
+
+      .message-wrap {
+        margin-bottom: 6px;
+
+        &:first-child {
+          padding-top: 10px;
+        }
+      }
+
+      .img {
+        float: left;
+        margin-right: 10px;
+      }
+
+      .img,
+      .message {
+        @include inline-block();
+      }
+
+      .message {
+        padding: 10px 5px 5px;
+        min-height: 20px;
+        @include border-radius(3px);
+      }
+
+      p,
+      .date {
+        @include inline-block();
+      }
+
+      p {
+        color: #666666;
+        font-size: 11px;
+        line-height: 14px;
+      }
+
+      .date {
+        position: relative;
+        top: 3px;
+        float: right;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        color: #999999;
+        font-size: 10px;
+      }
+
+      .message-wrap-contact {
+        .message {
+          display: block;
+          margin-left: 40px;
+          background: #ffffff;
+
+          &:after {
+            content: "";
+            display: block;
+            clear: both;
+          }
+        }
+      }
+
+      .message-wrap-user {
+        &:after {
+          content: "";
+          display: block;
+          clear: both;
+        }
+
+        .message {
+          float: right;
+          background: #cccccc;
+        }
+      }
+    }
+
+    .request-to-add {
+      position: relative;
+      padding: 10px;
+      display: none;
+
+      .textarea-box:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+
+      span,
+      a,
+      textarea,
+      input {
+        font-size: 10px;
+        font-family: open_sans_semibold;
+      }
+
+      .title {
+        display: block;
+        margin-bottom: 20px;
+        color: #2980b9;
+        line-height: 12px;
+      }
+
+      .btn {
+        display: block;
+        margin: 0 auto 5px;
+        height: 28px;
+        line-height: 26px;
+        width: 168px;
+        color: #fff;
+        background: #2980b9;
+        text-align: center;
+        @include border-radius(2px);
+      }
+
+      .textarea-box {
+        position: relative;
+        border: 1px solid #c6c6c5;
+        padding: 10px 10px 8px 10px;
+        background: #f9f9f9;
+        box-shadow: 0 10px 11px 0 rgba(0, 0, 0, 0.2);
+        @include border-radius(3px);
+
+        &:before {
+          content: "";
+          position: absolute;
+          top: -5px;
+          left: 0;
+          right: 0;
+          display: block;
+          margin: auto;
+          width: 8px;
+          height: 5px;
+          @include sprites-sprite(mess_triangle-textarea);
+        }
+      }
+
+      textarea {
+        border: 1px solid #dedddd;
+        padding: 10px;
+        width: 99%;
+        height: 65px;
+        max-height: 82px;
+        background: #ffffff;
+        color: #333;
+        line-height: 14px;
+        resize: none;
+        overflow: hidden;
+        @include border-radius(3px);
+        @include box-sizing(border-box); 
+      }
+
+      input[type="submit"] {
+        float: right;
+        margin-top: 10px;
+        border: none;
+        width: 72px;
+        height: 22px;
+        color: #fff;
+        background: #5bb75b;
+        line-height: 20px;
+        text-align: center;
+        @include border-radius(2px);
+      }
+    }
+
+    .field-input-text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #cccccc;
+      height: 73px;
+      background: #ffffff;
+
+      &:before,
+      &:after {
+        content: "";
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        display: none;
+        height: 100%;
+        width: 1px;
+        background: #2980b9;
+      }
+
+      &:before {
+        left: -1px;
+      }
+
+      &:after {
+        right: -1px;
+      }
+
+      &:focus,
+      &:hover {
+        border-top: 1px solid #2980b9;
+
+        &:before,
+        &:after {
+          display: block;
+        }
+
+        form:after {
+          display: block;
+        }
+      }
+
+      .nicescroll-cursors {
+        height: 26px;
+      }
+
+      form {
+        position: relative;
+        width: 100%;
+        @include box-sizing(border-box);
+
+        &:after {
+          content: "";
+          z-index: 1;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          display: none;
+          height: 1px;
+          width: 100%;
+          background: #2980b9;
+        }
+      }
+
+      input,
+      textarea {
+        border: none;
+      }
+
+      .add-photo,
+      .add-smile,
+      input[type="submit"] {
+        position: absolute;
+        display: block;
+        background-color: transparent;
+        cursor: pointer;
+      }
+
+      .add-photo {
+        top: 7px;
+        right: 18px;
+        width: 16px;
+        height: 14px;
+        @include sprites-sprite(mess_add-photo);
+
+        &:hover,
+        &:focus {
+          @include sprites-sprite(mess_add-photo-active);
+        }
+      }
+
+      .add-smile {
+        top: 29px;
+        right: 18px;
+        width: 16px;
+        height: 16px;
+        @include sprites-sprite(mess_smile);
+
+        &:hover,
+        &:focus {
+          @include sprites-sprite(mess_smile-active);
+        }
+      }
+
+      input[type="submit"] {
+        right: 14px;
+        bottom: 4px;
+        width: 20px;
+        height: 20px;
+        @include sprites-sprite(mess_submit);
+
+        &:hover,
+        &:focus {
+          @include sprites-sprite(mess_submit-active);
+        }
+      }
+
+      textarea {
+        padding: 10px 44px 10px 10px;
+        height: 72px;
+        overflow: auto;
+        resize: vertical;
+        width: 100%;
+        color: #333333;
+        font-size: 11px;
+        line-height: 16px;
+        resize: none;
+        @include box-sizing(border-box);
+      }
+    }
+  }
+}

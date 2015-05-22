@@ -1,0 +1,9 @@
+$sprite-layout:smart;
+@import "sprites/*.png";
+
+@import "compass/reset";
+@import "compass/utilities/sprites";
+@import "compass/css3";
+
+
+@import "main";
