@@ -5,162 +5,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-
-  <link href='app/styles/jquery.custom-scrollbar.css' rel='stylesheet' type='text/css'>
-  <link href='app/styles/select-menu-with-images.css' rel='stylesheet' type='text/css'>
-
   <!-- Application styles. -->
-  <link href='app/styles/style_messenger.css' rel='stylesheet' type='text/css'>
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <!-- build:[href] /styles.min.css -->
+  <!-- build:[href] styles.min.css -->
   <link rel="stylesheet" href="app/styles/index.css">
   <!-- /build -->
 
-  <!-- templates -->
-  <script id="messenger-template" type="text/template">
-    <div class="header-top-line">
-      <a href="#?" class="add-person"></a>
-      <a href="#?" class="close"></a>
-      <div class="add-person-box">
-        <form action="">
-          <div class="field-wrap">
-            <input type="text" value="">
-          </div>
-          <div class="scroll-box"></div>
-          <div class="submit-wrap">
-            <input type="submit" value="Добавить в группу">
-          </div>
-        </form>
-      </div>
-    </div>
-    <div class="wrap-content">
-      <div class="list-contacts">
-        <div class="person"></div>
-        <div class="search">
-          <form action="">
-            <input type="text" value="">
-            <input type="reset" value="">
-            <input type="submit" value="">
-          </form>
-        </div>
-        <div class="list-friends">
-          <ul>
-          </ul>
-          <div>
-            <a href="#" class="btn-search">Поиск в Evorch</a>
-          </div>
-        </div>
-        <div class="list-friends list-similar-contants">
-          <ul>
-          </ul>
-        </div>
-      </div>
-      <div class="dialog-wrap">
-      </div>
-    </div>
-  </script>
-
-  <script id="dialog-template" type="text/template">
-    <div class="active-person"></div>
-    <div class="content">
-      <div class="dialog">
-      </div>
-      <div class="request-to-add">
-        <form action="">
-          <span class="title">Пользователь Алина Полина  не включен в ваш список контактов.</span>
-          <a href="" class="btn">Добавить в список контактов</a>
-          <div class="textarea-box">
-            <textarea maxlength="120">Здравствуйте, Алина Полина. Я хочу внести Вас в свой список контактов в Evorch.</textarea>
-            <input type="submit" value="Добавить">
-          </div>
-        </form>
-      </div>
-      <div class="field-input-text">
-        <form action="">
-          <textarea class="input">Етско-вьетнамской экспедиции фольклористов.хижинах, крытых пальмовыми листьями.</textarea>
-          <a href="" class="add-photo"></a>
-          <a href="" class="add-smile"></a>
-          <input class="send" type="submit" value="" title="Отправить">
-        </form>
-      </div>
-    </div>
-  </script>
-
-  <script id="person-template" type="text/template">
-    <a href=""><img src="<%= avatar %>" alt=""></a>
-    <div class="wrap">
-      <a href="" class="name"><%= name %></a>
-      <div class="select-status-box">
-        <select name="select-status" id="select-status" class="select-status">
-          <option value="online" title="app/images/mess_status_online.png">В сети</option>
-          <option value="offline" title="app/images/mess_status_offline.png">Не в сети</option>
-          <option value="do_not_disturb" title="app/images/mess_status_do_not_disturb.png">Не беспокоить</option>
-          <option value="away" selected="selected" title="app/images/mess_status_away.png">Нет на месте</option>
-          <option value="invisible" title="app/images/mess_status_offline.png">Невидимый</option>
-        </select>
-      </div>
-    </div>
-  </script>
-
-  <script id="chat-template" type="text/template">
-  	<div class="header">
-  		<div class="status"></div><div class="name"><%= name %></div>
-	</div>
-    <div class="messages"></div>
-    <input class="input" type="text" autofocus="">
-    <input class="send" type="submit" value="Send">
-  </script>
-
-  <script id="active-person-template" type="text/template">
-    <a href="" class="link-img"><img src="app/images/mess_1.jpg" alt=""></a>
-    <div class="person">
-      <a href="" class="name">Елена Кренделева</a>
-      <span class="status status_online">В сети</span>
-      <span class="geo">Санкт-Петербург, Россия</span>
-    </div>
-  </script>
-
-  <script id="user-template" type="text/template">
-    <li>
-      <a href="#">
-        <div class="wrap-img">
-          <img src="<%= avatar %>" alt="<%= name %>">
-          <span class="icon-status icon-status_do_not_disturb"></span>
-        </div>
-        <span class="name"><%= name %></span>
-      </a>
-    </li>
-  </script>
-
-  <script id="message-contact-template" type="text/template">
-    <div class="img">
-      <img src="<%= avatar %>" alt="">
-    </div>
-    <div class="message">
-      <p><%= text %></p>
-      <span class="date"><%= time %></span>
-    </div>
-  </script>
-
-  <script id="message-user-template" type="text/template">
-    <div class="message">
-      <p><%= text %></p>
-      <span class="date"><%= time %></span>
-    </div>
-  </script>
-
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-  <script type="text/javascript" src="js/jquery.custom-scrollbar.js"></script>
-  <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
-  <script type="text/javascript" src="js/autoresize.jquery.js"></script>
-  <script type="text/javascript" src="js/jquery.dd.min.js"></script>
+  <!--script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script-->
+  <!-- build:[src] ../js/jquery.min.js -->
+  <script src="js/jquery.min.js"></script>
+  <!-- /build -->
+  <!-- build:[src] ../js/jquery.custom-scrollbar.js -->
+  <script src="js/jquery.custom-scrollbar.js"></script>
+  <!-- /build -->
+  <!-- build:[src] ../js/jquery.nicescroll.min.js -->
+  <script src="js/jquery.nicescroll.min.js"></script>
+  <!-- /build -->
+  <!-- build:[src] ../js/autoresize.jquery.js -->
+  <script src="js/autoresize.jquery.js"></script>
+  <!-- /build -->
+  <!-- build:[src] ../js/jquery.dd.min.js -->
+  <script src="js/jquery.dd.min.js"></script>
+  <!-- /build -->
 
   <script src="http://evorch.ru:11345/socket.io/socket.io.js"></script>
-
+</head>
+<body>
   <!-- Application source. -->
-  <!-- build:[src] /source.min.js -->
+  <!-- build:[src] source.min.js -->
   <script src="bower_components/requirejs/require.js"
     data-main="app/config"></script>
   <!-- /build -->

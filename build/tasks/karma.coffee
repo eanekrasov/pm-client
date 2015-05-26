@@ -36,6 +36,7 @@ module.exports = ->
 
       files: [
         # You can optionally remove this or swap out for a different expect.
+        "bower_components/jquery/dist/jquery.min.js"
         "bower_components/assert/assert.js"
         "bower_components/requirejs/require.js"
         "test/runner.js"

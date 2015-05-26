@@ -1,31 +1,22 @@
-define(['backbone', './ChatView'], function(Backbone, ChatView) {
+define(['backbone', '../app', '../templates'], function (Backbone, app, templates) {
   "use strict";
 
   var UserView = Backbone.View.extend({
     className: 'user',
     events: {
-      'click': 'showChat'
+      'click': 'onClick'
     },
     initialize: function(options){
-      this.template = $('#user-template').html();
       this.model = options.context;
       this.context = this.model.attributes;
       this.$el.toggleClass('online', this.context.online);
       return this;
     },
-    showChat: function () {
-      var view = null;
-      if (messenger.chatViews.hasOwnProperty(this.model.id)) {
-        view = messenger.chatViews[this.model.id];
-      } else {
-        view = new ChatView({context: this.model});
-        messenger.chatViews[this.model.id] = view; 
-        $('body').append(view.render().el);
-      }
-      // TODO: view.focus();
+    onClick: function () {
+      app.showChat(this.model);
     },
     render: function () {
-      this.$el.html(_.template(this.template, this.context));
+      this.$el.html(_.template(templates.user, this.context));
       return this;
     }
   });

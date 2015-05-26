@@ -1,4 +1,4 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', '../templates'], function (Backbone, templates) {
   "use strict";
 
   var PersonView = Backbone.View.extend({
@@ -7,15 +7,21 @@ define(['backbone'], function(Backbone) {
     },
     initialized: false,
     initialize: function(options){
-      this.template = $('#person-template').html();
       this.model = options.context;
       this.context = this.model.attributes;
       this.model.on('change', this.render, this);
       return this;
     },
     render: function () {
-      this.$el.html(_.template(this.template, this.context));
-      this.$("#select-status").msDropDown();
+      this.$el.html(_.template(templates.person, this.context));
+      this.$("#select-status").msDropDown({
+        on: {
+          change: function (data) {
+            console.log(data.value);
+            //TODO: messenger.trigger('socket:send', data);
+          }.bind(this)
+        }
+      });
       return this;
     }
   });
