@@ -7,6 +7,8 @@
     "lodash-template-loader": "~0.1.6",
     "backbone": "~1.1.2",
     "jquery": "~2.1.1",
+    "jquery-ui": "~1.11.4",
+    "compass": "~0.5.3",
     "requirejs": "~2.1.14",
     "qunit": "~1.14.0",
     "jasmine": "~2.0.0",

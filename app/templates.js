@@ -22,11 +22,9 @@ define(function (require, exports, module) {
         <div class="list-contacts"> \
           <div class="person"></div> \
           <div class="search"> \
-            <form action=""> \
-              <input type="text" value=""> \
-              <input type="reset" value=""> \
-              <input type="submit" value=""> \
-            </form> \
+            <input type="text" class="filter-text" value=""> \
+            <input type="reset" class="filter-reset" value=""> \
+            <input type="submit" class="filter-submit" value=""> \
           </div> \
           <div class="list-friends"> \
             <ul> \
@@ -59,7 +57,7 @@ define(function (require, exports, module) {
           </form> \
         </div> \
         <div class="field-input-text"> \
-          <textarea class="input">Етско-вьетнамской экспедиции фольклористов.хижинах, крытых пальмовыми листьями.</textarea> \
+          <textarea class="input"></textarea> \
           <a href="" class="add-photo"></a> \
           <a href="" class="add-smile"></a> \
           <input class="send" type="submit" value="" title="Отправить"> \
@@ -70,12 +68,11 @@ define(function (require, exports, module) {
       <div class="wrap"> \
       <a href="" class="name"><%= name %></a> \
         <div class="select-status-box"> \
-          <select name="select-status" id="select-status" class="select-stat \
-            <option value="online" title="app/images/mess_status_online.png" \
-            <option value="offline" title="app/images/mess_status_offline.pn \
-            <option value="do_not_disturb" title="app/images/mess_status_do_ \
-            <option value="away" selected="selected" title="app/images/mess_ \
-            <option value="invisible" title="app/images/mess_status_offline. \
+          <select name="select-status" id="select-status" class="select-status"> \
+            <option value="online" title="../app/images/mess_status_online.png">В сети</option> \
+            <option value="do_not_disturb" title="../app/images/mess_status_do_not_disturb.png">Не беспокоить</option> \
+            <option value="away" selected="selected" title="../app/images/mess_status_away.png">Нет на месте</option> \
+            <option value="offline" title="../app/images/mess_status_offline.png">Невидимый</option> \
           </select> \
         </div> \
       </div>',
@@ -83,7 +80,7 @@ define(function (require, exports, module) {
       <a href="" class="link-img"><img src="<%= avatar %>" alt=""></a> \
       <div class="person"> \
         <a href="" class="name"><%= name %></a> \
-        <span class="status status_online">В сети</span> \
+        <span class="status status_online"></span> \
         <span class="geo">Санкт-Петербург, Россия</span> \
       </div>',
     user: ' \

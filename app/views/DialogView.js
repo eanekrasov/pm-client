@@ -4,7 +4,7 @@ define(['backbone', './ActivePersonView', './MessagesView', '../app', '../models
     className: 'dialog-wrap',
     events: {
       'click .send': 'send',
-      'keypress .input': 'inputKeyPress'
+      'keyup .input': 'inputKeyUp'
     },
     initialize: function(options){
       this.model = options.context;
@@ -35,6 +35,9 @@ define(['backbone', './ActivePersonView', './MessagesView', '../app', '../models
       this.$el_messages = this.$('.dialog .overview');
       this.messagesView = new MessagesView({collection: this.model.messages, el: this.$el_messages[0]});
       this.messagesView.render();
+
+      this.update();
+
       return this;
     },
     send: function () {
@@ -50,9 +53,15 @@ define(['backbone', './ActivePersonView', './MessagesView', '../app', '../models
       this.$(".dialog").customScrollbar("resize", true);
       this.$(".dialog").customScrollbar("scrollToY", this.$el_messages[0].scrollHeight);
     },
-    inputKeyPress: function (e) {
-      if (e.which == '13') { // enter
+    inputKeyUp: function (e) {
+      var code = (e.which > 0 ) ? e.which : e.keyCode;
+      if (code == 13) { // enter
         this.send();
+      }
+      if (code == 8 || code == 46) { // backspace or delete
+        app.trigger('socket:senderasing', this.model.id);
+      } else {
+        app.trigger('socket:sendwriting', this.model.id);
       }
     }
   });
