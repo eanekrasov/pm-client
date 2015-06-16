@@ -5,12 +5,13 @@ define(function(require, exports, module) {
   var Backbone = require("backbone");
 
   // Chat message model
-  var Message = Backbone.Model.extend({
+  module.exports = Backbone.Model.extend({
     defaults: {
       owner: 0,
       receiver: 0,
       text: "",
-      time: ""
+      time: "",
+      avatar: ""
     },
     initialize: function(){
       this.on("change:text", function(model){
@@ -18,6 +19,4 @@ define(function(require, exports, module) {
       });
     }
   });
-
-  module.exports = Message;
 });

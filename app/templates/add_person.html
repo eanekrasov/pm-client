@@ -1,0 +1,18 @@
+<div class="field-wrap">
+    <input type="text" value="">
+</div>
+<div class="scroll-box">
+    <% _.each(users, function(user){ %>
+    <div class="field">
+        <input type="checkbox" name="add-person[<%= user.id %>]" id="a[<%= user.id %>]">
+        <label for="a[<%= user.id %>]">
+            <span class="box"></span>
+            <span class="icon-status icon-status_<%= user.status %>"></span>
+            <span class="name"><%= user.name %></span>
+        </label>
+    </div>
+    <% }); %>
+</div>
+<div class="submit-wrap">
+    <input type="submit" value="Добавить в группу">
+</div>

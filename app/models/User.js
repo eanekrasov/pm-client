@@ -1,14 +1,10 @@
-define(function(require, exports, module) {
+define(['backbone', 'models/Message'], function (Backbone, Message) {
   "use strict";
 
-  // External dependencies.
-  var Backbone = require("backbone");
-  var Message = require("./Message");
-
   // Chat user model
-  var User = Backbone.Model.extend({
+  return Backbone.Model.extend({
     defaults: {
-      status: "offline", // TODO: get from local storage or something
+      status: "offline",
       id: null,
       name: null,
       avatar: "",
@@ -20,6 +16,4 @@ define(function(require, exports, module) {
       this.messages = new Backbone.Collection(null, {model: Message});
     }
   });
-
-  module.exports = User;
 });
