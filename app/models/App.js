@@ -5,6 +5,7 @@ define(['backbone', 'models/Account', 'models/Filter', 'models/User', 'collectio
         defaults: {
             account: new Account({id: 0, name: "anonymous", status: localStorage['pm-status'] || 'online'}),
             users: new Users(),
+            evorch_users: new Users(),
             filter: new Filter()
         }
     });

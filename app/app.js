@@ -37,13 +37,13 @@ define([
 
         return Marionette.Application.extend({
             // config
-        debug: true,
-        io_url: 'http://dev.evorch.ru:11345',
+            debug: true,
+            io_url: 'http://dev.evorch.ru:11345',
 
             // data
             model: new AppModel(),
-        chatViews: {},
-        current: null,
+            chatViews: {},
+            current: null,
             socket: null,
 
             // own handlers
@@ -59,17 +59,6 @@ define([
                 });
                 this.root.show(this.view);
                 this.channel.reply('appView', this.view);
-                var accountView = new AccountView({model: this.model.get('account')});
-                this.view.showChildView('account', accountView);
-                var filterView = new FilterView({model: this.model.get('filter')});
-                this.view.showChildView('filter', filterView);
-                var addPersonView = new AddPersonView({
-                    model: new Backbone.Model({
-                        text: "",
-                        users: []
-                    })
-                });
-                this.view.showChildView('add_person', addPersonView);
                 if (Backbone.history) {
                     Backbone.history.start();
             }
@@ -198,10 +187,10 @@ define([
                     }.bind(this), 5000);
                 },
                 'users': function (msg) {
-                    var view = this.view.add_person.currentView;
-                    var users = view.model.set('users', msg.users);
-                    view.render();
-            }
+                    this.model.get('evorch_users').reset(msg.users.map(function (data) {
+                        return new User(data);
+                    }));
+                }
             },
 
             initialize: function () {

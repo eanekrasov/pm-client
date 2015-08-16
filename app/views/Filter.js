@@ -12,6 +12,7 @@ define(['marionette', 'text!templates/filter.html'], function (Marionette, templ
         },
         events: {
             'click @ui.reset': 'onClickReset',
+            'click @ui.submit': 'onClickSubmit',
             'keyup @ui.text': 'onKeyUp'
         },
         modelEvents: {
@@ -23,21 +24,34 @@ define(['marionette', 'text!templates/filter.html'], function (Marionette, templ
             }
         },
         onKeyUp: function (e) {
-            var ESC_KEY = 27;
-            var char = e.which !== 0 ? e.which : e.keyCode;
-            var value = '';
-            e.preventDefault();
-            if (char !== ESC_KEY) {
+            var ESC_KEY = 27,
+                ESC_ENTER = 13,
+                char = e.which !== 0 ? e.which : e.keyCode,
                 value = this.ui.text.val().trim();
+            e.preventDefault();
+            if (char == ESC_KEY) {
+                this.resetValue();
+            } else if (char == ESC_ENTER) {
+                this.submitValue();
             } else {
-                this.ui.text.blur();
+                this.model.set('value', value);
+                Backbone.Radio.channel('global').command('users:filter', value);
             }
-            this.model.set('value', value);
-            Backbone.Radio.channel('global').command('users:filter', value);
+        },
+        submitValue: function () {
+            Backbone.Radio.channel('global').command("socket:users", this.ui.text.val().trim());
+        },
+        resetValue: function () {
+            this.model.set('value', '');
+            this.ui.text.val('').blur();
+            Backbone.Radio.channel('global').command('users:filter', '');
+            Backbone.Radio.channel('global').request('model').get('evorch_users').reset([]);
         },
         onClickReset: function () {
-            this.model.set('value', '');
-            Backbone.Radio.channel('global').command('users:filter', '');
+            this.resetValue();
+        },
+        onClickSubmit: function () {
+            this.submitValue();
         }
     });
 });
